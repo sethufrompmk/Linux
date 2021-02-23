@@ -1,0 +1,1192 @@
+
+File system commands:
+
+apt-get -> ubuntu
+yum -> redhat
+
+sathya@ubuntu:~$ sudo apt-get install vim
+[sudo] password for sathya:
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+vim is already the newest version (2:8.0.1453-1ubuntu1.4).
+The following package was automatically installed and is no longer required:
+  linux-hwe-5.4-headers-5.4.0-51
+Use 'sudo apt autoremove' to remove it.
+0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+sathya@ubuntu:~$
+
+
+wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+
+
+sathya@ubuntu:~/shell-test$ wget https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+--2021-02-21 04:56:18--  https://archive.apache.org/dist/hadoop/core/hadoop-2.6.5/hadoop-2.6.5.tar.gz
+Resolving archive.apache.org (archive.apache.org)... 138.201.131.134, 2a01:4f8:172:2ec5::2
+Connecting to archive.apache.org (archive.apache.org)|138.201.131.134|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 199635269 (190M) [application/x-gzip]
+Saving to: ‘hadoop-2.6.5.tar.gz’
+
+hadoop-2.6.5.tar.gz        100%[=====================================>] 190.39M  8.70MB/s    in 23s
+
+2021-02-21 04:56:41 (8.31 MB/s) - ‘hadoop-2.6.5.tar.gz’ saved [199635269/199635269]
+
+sathya@ubuntu:~/shell-test$ tar -xvf hadoop-2.6.5.tar.gz
+
+
+sathya@ubuntu:~/shell-test$ du -hs
+506M    .
+sathya@ubuntu:~/shell-test$ du -hs hadoop-2.6.5
+315M    hadoop-2.6.5
+sathya@ubuntu:~/shell-test$ du -hs hadoop-2.6.5.tar.gz
+191M    hadoop-2.6.5.tar.gz
+sathya@ubuntu:~/shell-test$
+
+sathya@ubuntu:~/shell-test$ mkdir -p test/test
+sathya@ubuntu:~/shell-test$ ls test/
+test
+sathya@ubuntu:~/shell-test$ mkdir test1/test
+mkdir: cannot create directory ‘test1/test’: No such file or directory
+sathya@ubuntu:~/shell-test$
+
+sathya@ubuntu:~/shell-test$ du -hs
+703M    .
+sathya@ubuntu:~/shell-test$ mkdir -p test/test
+sathya@ubuntu:~/shell-test$ ls test/
+test
+sathya@ubuntu:~/shell-test$ mkdir test1/test
+mkdir: cannot create directory ‘test1/test’: No such file or directory
+sathya@ubuntu:~/shell-test$ ls
+hadoop-2.6.5  hadoop-2.6.5.tar.gz  hadoop-2.6.5.zip  test
+sathya@ubuntu:~/shell-test$ cp hadoop-2.6.5 test/
+cp: -r not specified; omitting directory 'hadoop-2.6.5'
+sathya@ubuntu:~/shell-test$ cp -r hadoop-2.6.5 test/
+sathya@ubuntu:~/shell-test$
+
+sathya@ubuntu:~/shell-test$ mv hadoop-2.6.5 test/test/
+sathya@ubuntu:~/shell-test$ ls
+hadoop-2.6.5.tar.gz  hadoop-2.6.5.zip  test
+sathya@ubuntu:~/shell-test$ ls test/test/
+hadoop-2.6.5
+sathya@ubuntu:~/shell-test$
+
+sathya@ubuntu:~/shell-test$ rm test/hadoop-2.6.5/
+rm: cannot remove 'test/hadoop-2.6.5/': Is a directory
+sathya@ubuntu:~/shell-test$ ls
+hadoop-2.6.5.tar.gz  hadoop-2.6.5.zip  test
+sathya@ubuntu:~/shell-test$ rm hadoop-2.6.5.zip
+sathya@ubuntu:~/shell-test$ ls
+hadoop-2.6.5.tar.gz  test
+sathya@ubuntu:~/shell-test$ rm -rf test/hadoop-2.6.5/
+sathya@ubuntu:~/shell-test$ ls test/
+test
+sathya@ubuntu:~/shell-test$
+
+
+R W X
+1 2 4
+
+users group others
+1+2+4 1+4   0
+
+before:
+drwxrwxr-x  3 sathya sathya      4096 Feb 21 05:08 /home/sathya/shell-test/
+-rw-rw-r--  1 sathya sathya 199635269 Oct 11  2016  /home/sathya/shell-test/hadoop-2.6.5.tar.gz
+
+directory -> chmod 750 /home/sathya/shell-test
+drwxr-x---  3 sathya sathya      4096 Feb 21 05:08 /home/sathya/shell-test/
+sathya@ubuntu:~$ ll /home/sathya/shell-test/hadoop-2.6.5.tar.gz
+-rw-rw-r-- 1 sathya sathya 199635269 Oct 11  2016 /home/sathya/shell-test/hadoop-2.6.5.tar.gz
+
+recursive -> chmod -R 750 /home/sathya/shell-test
+
+sathya@ubuntu:~$ ll /home/sathya/shell-test/hadoop-2.6.5.tar.gz
+-rwxr-x--- 1 sathya sathya 199635269 Oct 11  2016 /home/sathya/shell-test/hadoop-2.6.5.tar.gz*
+sathya@ubuntu:~$
+chown , chgrp
+
+
+sathya@ubuntu:~$ netstat -tupln
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:38685         0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:37533           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:38699           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:43755           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:46861           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 ::1:631                 :::*                    LISTEN      -
+tcp6       0      0 :::36475                :::*                    LISTEN      -
+tcp6       0      0 :::38367                :::*                    LISTEN      -
+tcp6       0      0 :::2049                 :::*                    LISTEN      -
+tcp6       0      0 :::37953                :::*                    LISTEN      -
+tcp6       0      0 :::38819                :::*                    LISTEN      -
+tcp6       0      0 :::2181                 :::*                    LISTEN      -
+tcp6       0      0 :::37961                :::*                    LISTEN      -
+tcp6       0      0 :::111                  :::*                    LISTEN      -
+tcp6       0      0 127.0.0.1:9200          :::*                    LISTEN      -
+tcp6       0      0 ::1:9200                :::*                    LISTEN      -
+tcp6       0      0 :::8080                 :::*                    LISTEN      -
+tcp6       0      0 127.0.0.1:9300          :::*                    LISTEN      -
+tcp6       0      0 ::1:9300                :::*                    LISTEN      -
+udp        0      0 0.0.0.0:57318           0.0.0.0:*                           -
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:966             0.0.0.0:*                           -
+udp        0      0 0.0.0.0:42355           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:58947           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:43872           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:60994           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           -
+udp6       0      0 :::49237                :::*                                -
+udp6       0      0 :::111                  :::*                                -
+udp6       0      0 :::966                  :::*                                -
+udp6       0      0 :::50388                :::*                                -
+udp6       0      0 :::2049                 :::*                                -
+udp6       0      0 :::43158                :::*                                -
+udp6       0      0 :::35909                :::*                                -
+udp6       0      0 :::54173                :::*                                -
+udp6       0      0 :::5353                 :::*                                -
+sathya@ubuntu:~$ netstat -tupln | grep 2049
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -
+tcp6       0      0 :::2049                 :::*                    LISTEN      -
+udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -
+udp6       0      0 :::2049                 :::*                                -
+sathya@ubuntu:~$ sudo netstat -tupln
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      793/systemd-resolve
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1061/sshd
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      5050/cupsd
+tcp        0      0 127.0.0.1:38685         0.0.0.0:*               LISTEN      1034/containerd
+tcp        0      0 0.0.0.0:37533           0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      1111/mysqld
+tcp        0      0 0.0.0.0:38699           0.0.0.0:*               LISTEN      1036/rpc.mountd
+tcp        0      0 0.0.0.0:43755           0.0.0.0:*               LISTEN      1036/rpc.mountd
+tcp        0      0 0.0.0.0:46861           0.0.0.0:*               LISTEN      1036/rpc.mountd
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      790/rpcbind
+tcp6       0      0 :::22                   :::*                    LISTEN      1061/sshd
+tcp6       0      0 ::1:631                 :::*                    LISTEN      5050/cupsd
+tcp6       0      0 :::36475                :::*                    LISTEN      1036/rpc.mountd
+tcp6       0      0 :::38367                :::*                    LISTEN      1198/java
+tcp6       0      0 :::2049                 :::*                    LISTEN      -
+tcp6       0      0 :::37953                :::*                    LISTEN      1036/rpc.mountd
+tcp6       0      0 :::38819                :::*                    LISTEN      -
+tcp6       0      0 :::2181                 :::*                    LISTEN      1198/java
+tcp6       0      0 :::37961                :::*                    LISTEN      1036/rpc.mountd
+tcp6       0      0 :::111                  :::*                    LISTEN      790/rpcbind
+tcp6       0      0 127.0.0.1:9200          :::*                    LISTEN      1247/java
+tcp6       0      0 ::1:9200                :::*                    LISTEN      1247/java
+tcp6       0      0 :::8080                 :::*                    LISTEN      1515/java
+tcp6       0      0 127.0.0.1:9300          :::*                    LISTEN      1247/java
+tcp6       0      0 ::1:9300                :::*                    LISTEN      1247/java
+udp        0      0 0.0.0.0:57318           0.0.0.0:*                           1036/rpc.mountd
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           793/systemd-resolve
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           2677/dhclient
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           790/rpcbind
+udp        0      0 0.0.0.0:631             0.0.0.0:*                           5052/cups-browsed
+udp        0      0 0.0.0.0:966             0.0.0.0:*                           790/rpcbind
+udp        0      0 0.0.0.0:42355           0.0.0.0:*                           1036/rpc.mountd
+udp        0      0 0.0.0.0:58947           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:2049            0.0.0.0:*                           -
+udp        0      0 0.0.0.0:43872           0.0.0.0:*                           821/avahi-daemon: r
+udp        0      0 0.0.0.0:60994           0.0.0.0:*                           1036/rpc.mountd
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           821/avahi-daemon: r
+udp6       0      0 :::49237                :::*                                821/avahi-daemon: r
+udp6       0      0 :::111                  :::*                                790/rpcbind
+udp6       0      0 :::966                  :::*                                790/rpcbind
+udp6       0      0 :::50388                :::*                                1036/rpc.mountd
+udp6       0      0 :::2049                 :::*                                -
+udp6       0      0 :::43158                :::*                                1036/rpc.mountd
+udp6       0      0 :::35909                :::*                                -
+udp6       0      0 :::54173                :::*                                1036/rpc.mountd
+udp6       0      0 :::5353                 :::*                                821/avahi-daemon: r
+sathya@ubuntu:~$ sudo netstat -tupln | grep 8080
+tcp6       0      0 :::8080                 :::*                    LISTEN      1515/java
+sathya@ubuntu:~$ sudo netstat -tupln | grep 9200
+tcp6       0      0 127.0.0.1:9200          :::*                    LISTEN      1247/java
+tcp6       0      0 ::1:9200                :::*                    LISTEN      1247/java
+sathya@ubuntu:~$ sudo netstat -tupln | grep 3306
+tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      1111/mysqld
+sathya@ubuntu:~$ sudo systemctl stop jenkins
+sathya@ubuntu:~$ sudo netstat -tupln | grep 8080
+sathya@ubuntu:~$ sudo systemctl status jenkins
+● jenkins.service - LSB: Start Jenkins at boot time
+   Loaded: loaded (/etc/init.d/jenkins; generated)
+   Active: inactive (dead) since Sun 2021-02-21 05:29:38 CET; 1min 15s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 6110 ExecStop=/etc/init.d/jenkins stop (code=exited, status=0/SUCCESS)
+  Process: 1253 ExecStart=/etc/init.d/jenkins start (code=exited, status=0/SUCCESS)
+
+Feb 20 16:17:12 ubuntu su[1468]: + ??? root:jenkins
+Feb 20 16:17:12 ubuntu su[1468]: pam_unix(su:session): session opened for user jenkins by (uid=0)
+Feb 20 16:17:12 ubuntu su[1468]: pam_unix(su:session): session closed for user jenkins
+Feb 20 16:17:13 ubuntu jenkins[1253]:    ...done.
+Feb 20 16:17:13 ubuntu systemd[1]: Started LSB: Start Jenkins at boot time.
+Feb 21 05:29:37 ubuntu systemd[1]: Stopping LSB: Start Jenkins at boot time...
+Feb 21 05:29:37 ubuntu jenkins[6110]: Correct java version found
+Feb 21 05:29:37 ubuntu jenkins[6110]:  * Stopping Jenkins Automation Server jenkins
+Feb 21 05:29:38 ubuntu jenkins[6110]:    ...done.
+Feb 21 05:29:38 ubuntu systemd[1]: Stopped LSB: Start Jenkins at boot time.
+sathya@ubuntu:~$ date
+Sun Feb 21 05:31:02 CET 2021
+sathya@ubuntu:~$ sudo systemctl start jenkins
+sathya@ubuntu:~$ sudo systemctl status jenkins
+● jenkins.service - LSB: Start Jenkins at boot time
+   Loaded: loaded (/etc/init.d/jenkins; generated)
+   Active: active (exited) since Sun 2021-02-21 05:31:49 CET; 2s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 6110 ExecStop=/etc/init.d/jenkins stop (code=exited, status=0/SUCCESS)
+  Process: 6198 ExecStart=/etc/init.d/jenkins start (code=exited, status=0/SUCCESS)
+
+Feb 21 05:31:47 ubuntu systemd[1]: Starting LSB: Start Jenkins at boot time...
+Feb 21 05:31:48 ubuntu jenkins[6198]: Correct java version found
+Feb 21 05:31:48 ubuntu jenkins[6198]:  * Starting Jenkins Automation Server jenkins
+Feb 21 05:31:48 ubuntu su[6258]: Successful su for jenkins by root
+Feb 21 05:31:48 ubuntu su[6258]: + ??? root:jenkins
+Feb 21 05:31:48 ubuntu su[6258]: pam_unix(su:session): session opened for user jenkins by (uid=0)
+Feb 21 05:31:48 ubuntu su[6258]: pam_unix(su:session): session closed for user jenkins
+Feb 21 05:31:49 ubuntu jenkins[6198]:    ...done.
+Feb 21 05:31:49 ubuntu systemd[1]: Started LSB: Start Jenkins at boot time.
+sathya@ubuntu:~$ date
+Sun Feb 21 05:31:59 CET 2021
+sathya@ubuntu:~$
+
+sathya@ubuntu:~$ grep -rnw /home/sathya/logs/ -e "SUCCESS"
+/home/sathya/logs/spark-maven-shade-build.log:672:[INFO] BUILD SUCCESS
+sathya@ubuntu:~$
+
+
+
+REGEX:
+
+^
+$
+sathya@ubuntu:~$ ping www.google.com
+PING www.google.com (142.250.71.4) 56(84) bytes of data.
+64 bytes from maa03s34-in-f4.1e100.net (142.250.71.4): icmp_seq=1 ttl=128 time=9.54 ms
+64 bytes from maa03s34-in-f4.1e100.net (142.250.71.4): icmp_seq=2 ttl=128 time=8.27 ms
+64 bytes from maa03s34-in-f4.1e100.net (142.250.71.4): icmp_seq=3 ttl=128 time=9.49 ms
+64 bytes from maa03s34-in-f4.1e100.net (142.250.71.4): icmp_seq=4 ttl=128 time=7.52 ms
+64 bytes from maa03s34-in-f4.1e100.net (142.250.71.4): icmp_seq=5 ttl=128 time=27.3 ms
+^C
+--- www.google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4008ms
+rtt min/avg/max/mdev = 7.522/12.434/27.346/7.495 ms
+sathya@ubuntu:~$ ping www.google1.com
+ping: www.google1.com: Name or service not known
+sathya@ubuntu:~$ ping 192.168.59.17
+PING 192.168.59.17 (192.168.59.17) 56(84) bytes of data.
+^C
+--- 192.168.59.17 ping statistics ---
+33 packets transmitted, 0 received, 100% packet loss, time 32745ms
+
+sathya@ubuntu:~$
+
+sathya@ubuntu:~$ ping 192.168.93.159
+PING 192.168.93.159 (192.168.93.159) 56(84) bytes of data.
+64 bytes from 192.168.93.159: icmp_seq=1 ttl=64 time=0.106 ms
+64 bytes from 192.168.93.159: icmp_seq=2 ttl=64 time=0.116 ms
+64 bytes from 192.168.93.159: icmp_seq=3 ttl=64 time=0.246 ms
+64 bytes from 192.168.93.159: icmp_seq=4 ttl=64 time=0.117 ms
+64 bytes from 192.168.93.159: icmp_seq=5 ttl=64 time=0.193 ms
+64 bytes from 192.168.93.159: icmp_seq=6 ttl=64 time=0.121 ms
+64 bytes from 192.168.93.159: icmp_seq=7 ttl=64 time=0.120 ms
+64 bytes from 192.168.93.159: icmp_seq=8 ttl=64 time=0.126 ms
+64 bytes from 192.168.93.159: icmp_seq=9 ttl=64 time=0.116 ms
+64 bytes from 192.168.93.159: icmp_seq=10 ttl=64 time=0.172 ms
+64 bytes from 192.168.93.159: icmp_seq=11 ttl=64 time=0.165 ms
+64 bytes from 192.168.93.159: icmp_seq=12 ttl=64 time=0.120 ms
+64 bytes from 192.168.93.159: icmp_seq=13 ttl=64 time=0.118 ms
+64 bytes from 192.168.93.159: icmp_seq=14 ttl=64 time=0.114 ms
+64 bytes from 192.168.93.159: icmp_seq=15 ttl=64 time=0.195 ms
+64 bytes from 192.168.93.159: icmp_seq=16 ttl=64 time=0.118 ms
+64 bytes from 192.168.93.159: icmp_seq=17 ttl=64 time=0.123 ms
+64 bytes from 192.168.93.159: icmp_seq=18 ttl=64 time=0.120 ms
+64 bytes from 192.168.93.159: icmp_seq=19 ttl=64 time=0.121 ms
+64 bytes from 192.168.93.159: icmp_seq=20 ttl=64 time=0.211 ms
+^C
+--- 192.168.93.159 ping statistics ---
+20 packets transmitted, 20 received, 0% packet loss, time 19444ms
+rtt min/avg/max/mdev = 0.106/0.141/0.246/0.042 ms
+sathya@ubuntu:~$
+
+sathya@ubuntu:~$ telnet 127.0.0.1 8080
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+Connection closed by foreign host.
+sathya@ubuntu:~$ telnet 127.0.0.1 9200
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+^C^[[A^C^C
+Connection closed by foreign host.
+sathya@ubuntu:~$ telnet 127.0.0.1 3306
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+[
+5.7.33-0ubuntu0.18.04.16-.S^]9qS1_7xm=mysql_native_password^CConnection closed by foreign host.
+sathya@ubuntu:~$ telnet www.google.com 8080
+Trying 142.250.71.4...
+^C
+sathya@ubuntu:~$
+
+
+vim editor:
+
+apt-get install vim
+vim test.txt
+press i for inserting data
+
+to save & exit -> esc then :wq! then enter
+sathya@ubuntu:~/shell-test$ vim test.txt
+sathya@ubuntu:~/shell-test$ vim test.txt
+sathya@ubuntu:~/shell-test$ cat test
+cat: test: Is a directory
+sathya@ubuntu:~/shell-test$ cat test.txt 
+123
+34
+54
+56
+234234
+345234
+234234234
+23424234
+
+sathya@ubuntu:~/shell-test$ 
+
+continue without saving -> esc then :q! then enter
+
+to delete a line -> go to that line by pressing up & down arrow and type dd 
+
+selective lines editor
+
+vimdiff test.txt test1.txt
+
+#123                             |  #123
+  #54                              |  #54
+  #56                              |  #56
+  #345                             |  #345
+  ---------------------------------|  #1                              
+  ~                                |  ~                               
+  ~                                |  ~                               
+  ~                                |  ~                                                      
+ 
+sathya@ubuntu:~/shell-test$ touch sathya.txt
+sathya@ubuntu:~/shell-test$ ls
+hadoop-2.6.5.tar.gz  sathya.txt  test  test1.txt  test.txt
+sathya@ubuntu:~/shell-test$ cat sathya.txt
+sathya@ubuntu:~/shell-test$ pwd
+/home/sathya/shell-test
+sathya@ubuntu:~/shell-test$ 
+
+find a element in vim -> /<element> then enter -> to find a next element -> press n
+
+
+env windows:
+JAVA_HOME
+C:\Program Files\Java\jdk1.8.0_221
+
+
+ps 
+kill
+top 
+free
+netstat
+telnet
+
+
+[root@ubuntu sathya ]$ ps | grep
+Usage: grep [OPTION]... PATTERN [FILE]...
+Try 'grep --help' for more information.
+[root@ubuntu sathya ]$ ps | grep mysql
+mysql      1111  0.1  1.7 1424852 180248 ?      Sl   Feb22   0:29 /usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.pid
+root      55978  0.0  0.0  14436  1004 pts/0    S+   02:57   0:00                      \_ grep --color=auto mysql
+[root@ubuntu sathya ]$ ps | grep jenkins
+sathya    52628  0.0  0.0   1108     4 ?        Ss   02:23   0:00      \_ /bin/tini -- /usr/local/bin/jenkins.sh
+sathya    52652  1.2 10.5 5169076 1070028 ?     Sl   02:23   0:26          \_ java -jar /usr/share/jenkins/jenkins.war --httpPort=9080
+root      55984  0.0  0.0  14436  1072 pts/0    S+   02:57   0:00                      \_ grep --color=auto jenkins
+[root@ubuntu sathya ]$ ps | grep elasticsearch
+elastic+   1247  0.6 12.8 3593104 1311836 ?     Ssl  Feb22   2:57 /usr/bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Des.networkaddress.cache.ttl=60 -Des.networkaddress.cache.negative.ttl=10 -XX:+AlwaysPreTouch -Xss1m -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -XX:-OmitStackTraceInFastThrow -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -Djava.io.tmpdir=/tmp/elasticsearch-325975115537071752 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/lib/elasticsearch -XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:/var/log/elasticsearch/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -Des.path.home=/usr/share/elasticsearch -Des.path.conf=/etc/elasticsearch -Des.distribution.flavor=default -Des.distribution.type=deb -cp /usr/share/elasticsearch/lib/* org.elasticsearch.bootstrap.Elasticsearch -p /var/run/elasticsearch/elasticsearch.pid --quiet
+elastic+   2093  0.0  0.0 136516  8276 ?        Sl   Feb22   0:00  \_ /usr/share/elasticsearch/modules/x-pack-ml/platform/linux-x86_64/bin/controller
+root      55990  0.0  0.0  14436  1040 pts/0    S+   02:57   0:00                      \_ grep --color=auto elasticsearch
+[root@ubuntu sathya ]$ ps | grep kibana       
+root      55994  0.0  0.0  14436  1044 pts/0    S+   02:58   0:00                      \_ grep --color=auto kibana
+[root@ubuntu sathya ]$ ps | grep java  
+sathya    52652  1.2 10.5 5169076 1070028 ?     Sl   02:23   0:26          \_ java -jar /usr/share/jenkins/jenkins.war --httpPort=9080
+zookeep+   1198  0.1  0.5 5026104 59180 ?       Sl   Feb22   0:48 /usr/bin/java -cp /etc/zookeeper/conf:/usr/share/java/jline.jar:/usr/share/java/log4j-1.2.jar:/usr/share/java/xercesImpl.jar:/usr/share/java/xmlParserAPIs.jar:/usr/share/java/netty.jar:/usr/share/java/slf4j-api.jar:/usr/share/java/slf4j-log4j12.jar:/usr/share/java/zookeeper.jar -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=true -Dzookeeper.log.dir=/var/log/zookeeper -Dzookeeper.root.logger=INFO,ROLLINGFILE org.apache.zookeeper.server.quorum.QuorumPeerMain /etc/zookeeper/conf/zoo.cfg
+elastic+   1247  0.6 12.8 3593104 1311836 ?     Ssl  Feb22   2:58 /usr/bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Des.networkaddress.cache.ttl=60 -Des.networkaddress.cache.negative.ttl=10 -XX:+AlwaysPreTouch -Xss1m -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -XX:-OmitStackTraceInFastThrow -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dio.netty.recycler.maxCapacityPerThread=0 -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -Djava.io.tmpdir=/tmp/elasticsearch-325975115537071752 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/lib/elasticsearch -XX:ErrorFile=/var/log/elasticsearch/hs_err_pid%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -Xloggc:/var/log/elasticsearch/gc.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=32 -XX:GCLogFileSize=64m -Des.path.home=/usr/share/elasticsearch -Des.path.conf=/etc/elasticsearch -Des.distribution.flavor=default -Des.distribution.type=deb -cp /usr/share/elasticsearch/lib/* org.elasticsearch.bootstrap.Elasticsearch -p /var/run/elasticsearch/elasticsearch.pid --quiet
+root      55998  0.0  0.0  14436  1056 pts/0    S+   02:58   0:00                      \_ grep --color=auto java
+[root@ubuntu sathya ]$ ps
+USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root          2  0.0  0.0      0     0 ?        S    Feb22   0:00 [kthreadd]
+root          3  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [rcu_gp]
+root          4  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [rcu_par_gp]
+root          6  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kworker/0:0H-kb]
+root          9  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [mm_percpu_wq]
+root         10  0.0  0.0      0     0 ?        S    Feb22   0:04  \_ [ksoftirqd/0]
+root         11  0.1  0.0      0     0 ?        I    Feb22   0:28  \_ [rcu_sched]
+root         12  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [migration/0]
+root         13  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [idle_inject/0]
+root         14  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [cpuhp/0]
+root         15  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [cpuhp/1]
+root         16  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [idle_inject/1]
+root         17  0.0  0.0      0     0 ?        S    Feb22   0:01  \_ [migration/1]
+root         18  0.0  0.0      0     0 ?        S    Feb22   0:05  \_ [ksoftirqd/1]
+root         20  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kworker/1:0H-kb]
+root         21  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [kdevtmpfs]
+root         22  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [netns]
+root         23  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [rcu_tasks_kthre]
+root         24  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [kauditd]
+root         26  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [khungtaskd]
+root         27  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [oom_reaper]
+root         28  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [writeback]
+root         29  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [kcompactd0]
+root         30  0.0  0.0      0     0 ?        SN   Feb22   0:00  \_ [ksmd]
+root         31  0.0  0.0      0     0 ?        SN   Feb22   0:00  \_ [khugepaged]
+root         77  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kintegrityd]
+root         78  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kblockd]
+root         79  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [blkcg_punt_bio]
+root         82  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [tpm_dev_wq]
+root         83  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [ata_sff]
+root         84  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [md]
+root         85  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [edac-poller]
+root         86  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [devfreq_wq]
+root         87  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [watchdogd]
+root         90  0.0  0.0      0     0 ?        S    Feb22   0:03  \_ [kswapd0]
+root         91  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [ecryptfs-kthrea]
+root         93  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kthrotld]
+root         94  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/24-pciehp]
+root         95  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/25-pciehp]
+root         96  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/26-pciehp]
+root         97  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/27-pciehp]
+root         98  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/28-pciehp]
+root         99  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/29-pciehp]
+root        100  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/30-pciehp]
+root        101  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/31-pciehp]
+root        102  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/32-pciehp]
+root        103  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/33-pciehp]
+root        104  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/34-pciehp]
+root        105  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/35-pciehp]
+root        106  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/36-pciehp]
+root        107  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/37-pciehp]
+root        108  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/38-pciehp]
+root        109  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/39-pciehp]
+root        110  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/40-pciehp]
+root        111  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/41-pciehp]
+root        112  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/42-pciehp]
+root        113  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/43-pciehp]
+root        114  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/44-pciehp]
+root        115  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/45-pciehp]
+root        116  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/46-pciehp]
+root        117  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/47-pciehp]
+root        118  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/48-pciehp]
+root        119  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/49-pciehp]
+root        120  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/50-pciehp]
+root        121  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/51-pciehp]
+root        122  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/52-pciehp]
+root        123  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/53-pciehp]
+root        124  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/54-pciehp]
+root        125  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [irq/55-pciehp]
+root        126  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [acpi_thermal_pm]
+root        127  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_0]
+root        128  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_0]
+root        129  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_1]
+root        130  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_1]
+root        132  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [vfio-irqfd-clea]
+root        133  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [ipv6_addrconf]
+root        143  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kstrp]
+root        146  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kworker/u257:0-]
+root        159  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [charger_manager]
+root        211  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [mpt_poll_0]
+root        212  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [mpt/0]
+root        213  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_2]
+root        214  0.0  0.0      0     0 ?        S    Feb22   0:09  \_ [irq/16-vmwgfx]
+root        215  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_2]
+root        216  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_3]
+root        217  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_3]
+root        218  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_4]
+root        219  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_4]
+root        220  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_5]
+root        221  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_5]
+root        222  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_6]
+root        223  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_6]
+root        224  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_7]
+root        225  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_7]
+root        226  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_8]
+root        227  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_8]
+root        228  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_9]
+root        229  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_9]
+root        230  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [ttm_swap]
+root        231  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_10]
+root        232  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_10]
+root        233  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_11]
+root        234  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_11]
+root        235  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_12]
+root        236  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_12]
+root        237  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_13]
+root        238  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_13]
+root        239  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_14]
+root        240  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_14]
+root        241  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_15]
+root        242  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_15]
+root        243  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_16]
+root        244  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_16]
+root        245  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_17]
+root        246  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_17]
+root        247  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_18]
+root        248  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_18]
+root        249  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_19]
+root        250  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_19]
+root        251  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_20]
+root        252  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_20]
+root        253  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_21]
+root        254  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_21]
+root        255  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_22]
+root        256  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_22]
+root        257  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_23]
+root        258  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_23]
+root        259  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_24]
+root        260  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_24]
+root        261  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_25]
+root        262  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_25]
+root        263  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_26]
+root        264  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_26]
+root        265  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_27]
+root        266  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_27]
+root        267  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_28]
+root        269  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_28]
+root        271  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_29]
+root        273  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_29]
+root        288  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_30]
+root        290  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_30]
+root        300  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_31]
+root        309  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_31]
+root        374  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [scsi_eh_32]
+root        375  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [scsi_tmf_32]
+root        376  0.0  0.0      0     0 ?        I<   Feb22   0:09  \_ [kworker/1:1H-kb]
+root        379  0.0  0.0      0     0 ?        I<   Feb22   0:13  \_ [kworker/0:1H-kb]
+root        453  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [raid5wq]
+root        500  0.0  0.0      0     0 ?        S    Feb22   0:04  \_ [jbd2/sda1-8]
+root        501  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [ext4-rsv-conver]
+root        558  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [rpciod]
+root        559  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [xprtiod]
+root        597  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop0]
+root        604  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop1]
+root        610  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop2]
+root        614  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop3]
+root        635  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop4]
+root        636  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop5]
+root        637  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop6]
+root        663  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop7]
+root        675  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop8]
+root        697  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop9]
+root        701  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop10]
+root        710  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop11]
+root        713  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop12]
+root        715  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop13]
+root        750  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop15]
+root        757  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop16]
+root        758  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [loop17]
+root        959  0.0  0.0   4512   792 ?        S    Feb22   0:00  \_ bpfilter_umh
+root       1044  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [kworker/u257:1-]
+root       1048  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [lockd]
+root       1152  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1153  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1154  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1155  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1156  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1158  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1159  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1162  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [nfsd]
+root       1326  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [iprt-VBoxWQueue]
+root       1330  0.0  0.0      0     0 ?        S    Feb22   0:00  \_ [iprt-VBoxTscThr]
+root       1826  0.0  0.0      0     0 ?        I<   Feb22   0:00  \_ [cryptd]
+root       4299  0.0  0.0      0     0 ?        S<   Feb22   0:00  \_ [krfcommd]
+root      17679  0.0  0.0      0     0 ?        I    01:31   0:01  \_ [kworker/u256:2-]
+root      38744  0.0  0.0      0     0 ?        S<   02:00   0:00  \_ [loop18]
+root      53051  0.1  0.0      0     0 ?        I    02:27   0:02  \_ [kworker/1:7-cgr]
+root      55541  0.0  0.0      0     0 ?        I    02:48   0:00  \_ [kworker/1:0-eve]
+root      55551  0.0  0.0      0     0 ?        I    02:49   0:00  \_ [kworker/0:9-eve]
+root      55552  0.0  0.0      0     0 ?        I    02:49   0:00  \_ [kworker/0:10-ev]
+root      55827  0.0  0.0      0     0 ?        I    02:52   0:00  \_ [kworker/u256:1-]
+root      55831  0.0  0.0      0     0 ?        I    02:53   0:00  \_ [kworker/u256:3-]
+root      55892  0.0  0.0      0     0 ?        I    02:55   0:00  \_ [kworker/0:0-eve]
+root      55905  0.0  0.0      0     0 ?        I    02:55   0:00  \_ [kworker/0:1]
+root          1  0.0  0.0 160660  9848 ?        Ss   Feb22   0:16 /sbin/init auto noprompt
+root        560  0.0  0.2 120172 28896 ?        S<s  Feb22   0:06 /lib/systemd/systemd-journald
+root        571  0.0  0.0  23924   180 ?        Ss   Feb22   0:00 /usr/sbin/blkmapd
+root        580  0.0  0.0  46568  4580 ?        Ss   Feb22   0:07 /lib/systemd/systemd-udevd
+root        583  0.0  0.0 232660   264 ?        Ssl  Feb22   0:00 vmware-vmblock-fuse /run/vmblock-fuse -o rw,subtype=vmware-vmblock,default_permissions,allow_other,dev,suid
+root        586  0.0  0.0 105908  1896 ?        Ss   Feb22   0:00 /sbin/lvmetad -f
+root        633  0.0  0.0  23752   196 ?        Ss   Feb22   0:00 /usr/sbin/rpc.idmapd
+root        790  0.0  0.0  47604  3308 ?        Ss   Feb22   0:00 /sbin/rpcbind -f -w
+root        791  0.0  0.1  91156 10504 ?        Ss   Feb22   0:00 /usr/bin/VGAuthService
+systemd+    793  0.0  0.0  71028  6228 ?        Ss   Feb22   0:08 /lib/systemd/systemd-resolved
+systemd+    796  0.0  0.0 146140  3268 ?        Ssl  Feb22   0:00 /lib/systemd/systemd-timesyncd
+root        797  0.2  0.0 228380  7556 ?        S<sl Feb22   1:01 /usr/bin/vmtoolsd
+root        802  0.0  0.0   4556   796 ?        Ss   Feb22   0:02 /usr/sbin/acpid
+root        805  0.0  0.0 110520  3476 ?        Ssl  Feb22   0:02 /usr/sbin/irqbalance --foreground
+root        808  0.0  0.0  31328  3024 ?        Ss   Feb22   0:00 /usr/sbin/cron -f
+message+    811  0.0  0.0  51808  6156 ?        Rs   Feb22   0:15 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root        814  0.0  0.3 200576 33124 ?        Ssl  Feb22   0:02 /usr/bin/python3 -Es /usr/sbin/firewalld --nofork --nopid
+syslog      817  0.0  0.0 263040  4052 ?        Ssl  Feb22   0:01 /usr/sbin/rsyslogd -n
+root        820  0.0  0.0  45236  5428 ?        Ss   Feb22   0:00 /sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+avahi       821  0.0  0.0  47264  3048 ?        Ss   Feb22   0:03 avahi-daemon: running [ubuntu.local]
+avahi       836  0.0  0.0  47080   344 ?        S    Feb22   0:00  \_ avahi-daemon: chroot helper
+root        823  0.0  0.3 1178580 34480 ?       Ssl  Feb22   0:19 /usr/lib/snapd/snapd
+root        824  0.0  0.0 288272  7688 ?        Ssl  Feb22   0:03 /usr/lib/accountsservice/accounts-daemon
+root        825  0.0  0.0  70776  6080 ?        Ss   Feb22   0:01 /lib/systemd/systemd-logind
+root        826  0.0  0.0 434328  9188 ?        Ssl  Feb22   0:00 /usr/sbin/ModemManager --filter-policy=strict
+root        827  0.0  0.1 503416 10984 ?        Ssl  Feb22   0:00 /usr/lib/udisks2/udisksd
+root        828  0.0  0.1 170536 17112 ?        Ssl  Feb22   0:00 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+root        862  0.0  0.0 296540  9840 ?        Ssl  Feb22   0:13 /usr/lib/policykit-1/polkitd --no-debug
+root        948  0.0  0.1 561680 15252 ?        Ssl  Feb22   0:11 /usr/sbin/NetworkManager --no-daemon
+root      55607  0.0  0.0  26120  6340 ?        S    02:51   0:00  \_ /sbin/dhclient -d -q -sf /usr/lib/NetworkManager/nm-dhcp-helper -pf /run/dhclient-ens33.pid -lf /var/lib/NetworkManager/dhclient-9d276
+root       1027  0.0  0.1 187252 19504 ?        Ssl  Feb22   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root       1034  0.4  0.4 962056 42216 ?        Ssl  Feb22   2:12 /usr/bin/containerd
+root      52602  0.0  0.0   9360  4520 ?        Sl   02:23   0:00  \_ containerd-shim -namespace moby -workdir /var/lib/containerd/io.containerd.runtime.v1.linux/moby/2337d7b5824be7a85c7e0d65889995f836091
+sathya    52628  0.0  0.0   1108     4 ?        Ss   02:23   0:00      \_ /bin/tini -- /usr/local/bin/jenkins.sh
+sathya    52652  1.2 10.5 5169076 1070028 ?     Sl   02:23   0:26          \_ java -jar /usr/share/jenkins/jenkins.war --httpPort=9080
+root       1036  0.0  0.0  38068   744 ?        Ss   Feb22   0:00 /usr/sbin/rpc.mountd --manage-gids
+root       1061  0.0  0.0  72304  5636 ?        Ss   Feb22   0:00 /usr/sbin/sshd -D
+mysql      1111  0.1  1.7 1424852 180248 ?      Sl   Feb22   0:30 /usr/sbin/mysqld --daemonize --pid-file=/run/mysqld/mysqld.pid
+root       1184  0.0  0.0 301088  7584 ?        Ssl  Feb22   0:00 /usr/sbin/gdm3
+root       1199  0.0  0.0 254452  8504 ?        Sl   Feb22   0:00  \_ gdm-session-worker [pam/gdm-launch-environment]
+gdm        1223  0.0  0.0 190696  5556 tty1     Ssl+ Feb22   0:00  |   \_ /usr/lib/gdm3/gdm-wayland-session gnome-session --autostart /usr/share/gdm/greeter/autostart
+gdm        1227  0.0  0.1 625628 13516 tty1     Sl+  Feb22   0:00  |       \_ /usr/lib/gnome-session/gnome-session-binary --autostart /usr/share/gdm/greeter/autostart
+gdm        1236  0.1  1.3 3255892 137964 tty1   Sl+  Feb22   0:31  |           \_ /usr/bin/gnome-shell
+gdm        1691  0.0  0.5 564164 51108 tty1     Sl+  Feb22   0:00  |           |   \_ /usr/bin/Xwayland :1024 -rootless -terminate -accessx -core -listen 4 -listen 5 -displayfd 6
+gdm        1909  0.0  0.0 354264  7256 tty1     Sl   Feb22   0:00  |           |   \_ ibus-daemon --xim --panel disable
+gdm        1912  0.0  0.0 273640  6596 tty1     Sl   Feb22   0:00  |           |       \_ /usr/lib/ibus/ibus-dconf
+gdm        2001  0.0  0.0 197788  5624 tty1     Sl   Feb22   0:00  |           |       \_ /usr/lib/ibus/ibus-engine-simple
+gdm        1935  0.0  0.4 656456 49164 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-xsettings
+gdm        1942  0.0  0.0 271056  5868 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-a11y-settings
+gdm        1946  0.0  0.4 505488 47380 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-clipboard
+gdm        1949  0.0  0.4 820728 49200 tty1     Sl+  Feb22   0:05  |           \_ /usr/lib/gnome-settings-daemon/gsd-color
+gdm        1950  0.0  0.1 386616 13480 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-datetime
+gdm        1951  0.0  0.0 276640  5252 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-housekeeping
+gdm        1953  0.0  0.4 668392 49844 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-keyboard
+gdm        1957  0.0  0.4 956952 50056 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-media-keys
+gdm        1959  0.0  0.0 194896  4680 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-mouse
+gdm        1962  0.0  0.4 679196 49676 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-power
+gdm        1964  0.0  0.0 259912  6952 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-print-notifications
+gdm        1966  0.0  0.0 194916  4600 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-rfkill
+gdm        1969  0.0  0.0 268632  4732 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
+gdm        1971  0.0  0.0 298144  6096 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-sharing
+gdm        1973  0.0  0.0 444704  9100 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-smartcard
+gdm        1980  0.0  0.0 327876  7924 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-sound
+gdm        1982  0.0  0.4 590468 48688 tty1     Sl+  Feb22   0:00  |           \_ /usr/lib/gnome-settings-daemon/gsd-wacom
+root       3811  0.0  0.0 408360  9396 ?        Sl   Feb22   0:00  \_ gdm-session-worker [pam/gdm-password]
+sathya     3858  0.0  0.0 205032  5832 tty2     Ssl+ Feb22   0:00      \_ /usr/lib/gdm3/gdm-x-session --run-script env GNOME_SHELL_SESSION_MODE=ubuntu gnome-session --session=ubuntu
+sathya     3860  0.7  1.3 573504 135304 tty2    Sl+  Feb22   3:29          \_ /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+sathya     3871  0.0  0.1 699716 14104 tty2     Sl+  Feb22   0:01          \_ /usr/lib/gnome-session/gnome-session-binary --session=ubuntu
+sathya     4241  0.0  0.0  11312   320 ?        Ss   Feb22   0:00              \_ /usr/bin/ssh-agent /usr/bin/im-launch env GNOME_SHELL_SESSION_MODE=ubuntu gnome-session --session=ubuntu
+sathya     4269  1.5  2.3 3515076 243992 tty2   Sl+  Feb22   7:21              \_ /usr/bin/gnome-shell
+sathya     4317  0.1  0.0 429932  9980 tty2     Sl   Feb22   0:49              |   \_ ibus-daemon --xim --panel disable
+sathya     4326  0.0  0.0 273648  6692 tty2     Sl   Feb22   0:00              |       \_ /usr/lib/ibus/ibus-dconf
+sathya     4594  0.0  0.0 197920  6472 tty2     Sl   Feb22   0:14              |       \_ /usr/lib/ibus/ibus-engine-simple
+sathya     4419  0.0  0.2 510136 22368 tty2     Sl+  Feb22   0:01              \_ /usr/lib/gnome-settings-daemon/gsd-power
+sathya     4421  0.0  0.0 342228  7996 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-print-notifications
+sathya     4424  0.0  0.0 416244  5844 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-rfkill
+sathya     4426  0.0  0.0 268632  4760 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-screensaver-proxy
+sathya     4429  0.0  0.0 445864  8124 tty2     Sl+  Feb22   0:02              \_ /usr/lib/gnome-settings-daemon/gsd-sharing
+sathya     4434  0.0  0.2 487604 21824 tty2     Sl+  Feb22   0:01              \_ /usr/lib/gnome-settings-daemon/gsd-xsettings
+sathya     4436  0.0  0.2 421488 21512 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-wacom
+sathya     4441  0.0  0.0 370968  7748 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-smartcard
+sathya     4442  0.0  0.0 327876  8036 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-sound
+sathya     4452  0.0  0.0 271056  5788 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-a11y-settings
+sathya     4459  0.0  0.1 336516 20088 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-clipboard
+sathya     4463  0.0  0.2 651640 22096 tty2     Sl+  Feb22   0:06              \_ /usr/lib/gnome-settings-daemon/gsd-color
+sathya     4466  0.0  0.1 462644 13444 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-datetime
+sathya     4468  0.0  0.0 357464  7060 tty2     Sl+  Feb22   0:02              \_ /usr/lib/gnome-settings-daemon/gsd-housekeeping
+sathya     4469  0.0  0.2 499384 22736 tty2     Sl+  Feb22   0:01              \_ /usr/lib/gnome-settings-daemon/gsd-keyboard
+sathya     4470  0.0  0.2 1125960 24220 tty2    Sl+  Feb22   0:01              \_ /usr/lib/gnome-settings-daemon/gsd-media-keys
+sathya     4471  0.0  0.0 271064  5828 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-settings-daemon/gsd-mouse
+sathya     4532  0.0  1.0 1399532 102548 tty2   Sl+  Feb22   0:15              \_ nautilus-desktop
+sathya     4537  0.0  0.0 271936  6100 tty2     Sl+  Feb22   0:00              \_ /usr/lib/gnome-disk-utility/gsd-disk-utility-notify
+sathya     4693  0.0  0.3 713008 31136 tty2     Sl+  Feb22   0:02              \_ update-notifier
+sathya     4695  0.1  1.6 1405288 170312 tty2   SLl+ Feb22   0:32              \_ /usr/bin/gnome-software --gapplication-service
+sathya     4809  0.0  0.3 941588 33688 tty2     Sl+  Feb22   0:01              \_ /usr/lib/deja-dup/deja-dup-monitor
+zookeep+   1198  0.1  0.5 5026104 59180 ?       Sl   Feb22   0:48 /usr/bin/java -cp /etc/zookeeper/conf:/usr/share/java/jline.jar:/usr/share/java/log4j-1.2.jar:/usr/share/java/xercesImpl.jar:/usr/share/ja
+gdm        1211  0.0  0.0  77104  8128 ?        Ss   Feb22   0:00 /lib/systemd/systemd --user
+gdm        1212  0.0  0.0 114016  2532 ?        S    Feb22   0:00  \_ (sd-pam)
+gdm        1225  0.0  0.0  50244  4340 ?        Ss   Feb22   0:00  \_ /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+gdm        1759  0.0  0.0 349348  6392 ?        Ssl  Feb22   0:00  \_ /usr/lib/at-spi2-core/at-spi-bus-launcher
+gdm        1764  0.0  0.0  49932  3680 ?        S    Feb22   0:00  |   \_ /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+gdm        1772  0.0  0.0 220768  6944 ?        Sl   Feb22   0:00  \_ /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+gdm        1784  0.0  0.1 1393568 15700 ?       Ssl  Feb22   0:01  \_ /usr/bin/pulseaudio --daemonize=no
+gdm        1919  0.0  0.0 271588  5892 ?        Sl   Feb22   0:00  \_ /usr/lib/ibus/ibus-portal
+gdm        1925  0.0  0.0 264460  5260 ?        Ssl  Feb22   0:00  \_ /usr/libexec/xdg-permission-store
+elastic+   1247  0.6 12.8 3593104 1311836 ?     Ssl  Feb22   2:58 /usr/bin/java -Xms1g -Xmx1g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Des.networka
+elastic+   2093  0.0  0.0 136516  8276 ?        Sl   Feb22   0:00  \_ /usr/share/elasticsearch/modules/x-pack-ml/platform/linux-x86_64/bin/controller
+whoopsie   1257  0.0  0.0 538044  9952 ?        Ssl  Feb22   0:01 /usr/bin/whoopsie -f
+kernoops   1269  0.0  0.0  56944  2340 ?        Ss   Feb22   0:01 /usr/sbin/kerneloops --test
+kernoops   1279  0.0  0.0  56944  2292 ?        Ss   Feb22   0:01 /usr/sbin/kerneloops
+root       1296  0.0  0.0 315240  7180 ?        Ssl  Feb22   0:00 /usr/lib/upower/upowerd
+rtkit      1787  0.0  0.0 183512  2736 ?        SNsl Feb22   0:00 /usr/lib/rtkit/rtkit-daemon
+root       1803  0.0  0.0  36492  4544 ?        Ss   Feb22   0:00 /usr/lib/bluetooth/bluetoothd
+gdm        1915  0.0  0.4 505880 47696 tty1     Sl   Feb22   0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+root       1930  0.0  0.0 289772  6668 ?        Ssl  Feb22   0:02 /usr/lib/x86_64-linux-gnu/boltd
+root       1934  0.2  0.2 440932 24104 ?        Ssl  Feb22   0:59 /usr/lib/packagekit/packagekitd
+colord     2044  0.0  0.1 317892 13304 ?        Ssl  Feb22   0:00 /usr/lib/colord/colord
+sathya     3840  0.0  0.0  77172  8260 ?        Ss   Feb22   0:02 /lib/systemd/systemd --user
+sathya     3841  0.0  0.0 196168  2760 ?        S    Feb22   0:00  \_ (sd-pam)
+sathya     3868  0.0  0.0  51996  6180 ?        Ss   Feb22   0:06  \_ /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+sathya     4243  0.0  0.0 349296  6536 ?        Ssl  Feb22   0:00  \_ /usr/lib/at-spi2-core/at-spi-bus-launcher
+sathya     4248  0.0  0.0  50056  4012 ?        S    Feb22   0:00  |   \_ /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+sathya     4251  0.0  0.0 220712  6852 ?        Sl   Feb22   0:01  \_ /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+sathya     4275  0.0  0.0 284872  6680 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfsd
+sathya     4557  0.0  0.0 361160  7000 ?        Sl   Feb22   0:00  |   \_ /usr/lib/gvfs/gvfsd-trash --spawner :1.13 /org/gtk/gvfs/exec_spaw/0
+sathya     4280  0.0  0.0 416116  5340 ?        Sl   Feb22   0:00  \_ /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+sathya     4330  0.0  0.0 271456  5976 ?        Sl   Feb22   0:00  \_ /usr/lib/ibus/ibus-portal
+sathya     4349  0.0  0.0 264460  5176 ?        Ssl  Feb22   0:00  \_ /usr/libexec/xdg-permission-store
+sathya     4356  0.0  0.1 616572 18364 ?        Sl   Feb22   0:00  \_ /usr/lib/gnome-shell/gnome-shell-calendar-server
+sathya     4360  0.0  0.2 1299532 23516 ?       Ssl  Feb22   0:01  \_ /usr/lib/evolution/evolution-source-registry
+sathya     4369  0.0  0.3 780644 32280 ?        Sl   Feb22   0:01  \_ /usr/lib/gnome-online-accounts/goa-daemon
+sathya     4382  0.0  0.0 188012  5292 ?        Sl   Feb22   0:00  \_ /usr/lib/dconf/dconf-service
+sathya     4392  0.0  0.0 296260  7112 ?        Sl   Feb22   0:00  \_ /usr/lib/gnome-online-accounts/goa-identity-service
+sathya     4397  0.0  0.0 299456  8760 ?        Ssl  Feb22   0:01  \_ /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+sathya     4401  0.0  0.0 268768  4848 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfs-mtp-volume-monitor
+sathya     4405  0.0  0.0 281684  6652 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+sathya     4409  0.0  0.0 371720  6256 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfs-afc-volume-monitor
+sathya     4415  0.0  0.0 266944  5940 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfs-goa-volume-monitor
+sathya     4571  0.0  0.6 885596 64380 ?        Ssl  Feb22   0:02  \_ /usr/lib/evolution/evolution-calendar-factory
+sathya     4609  0.0  0.5 1055676 60316 ?       Sl   Feb22   0:03  |   \_ /usr/lib/evolution/evolution-calendar-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Backen
+sathya     4629  0.0  0.2 725592 21424 ?        Ssl  Feb22   0:00  \_ /usr/lib/evolution/evolution-addressbook-factory
+sathya     4639  0.0  0.2 1010108 23320 ?       Sl   Feb22   0:01  |   \_ /usr/lib/evolution/evolution-addressbook-factory-subprocess --factory all --bus-name org.gnome.evolution.dataserver.Subprocess.Bac
+sathya     4660  0.0  0.0 197476  5996 ?        Ssl  Feb22   0:00  \_ /usr/lib/gvfs/gvfsd-metadata
+sathya    17344  0.1  0.8 1451924 89176 ?       Sl   01:20   0:08  \_ /usr/bin/nautilus --gapplication-service
+sathya    53025  0.0  0.4 744508 45904 ?        Sl   02:26   0:01  \_ /usr/bin/gedit --gapplication-service
+sathya    55928  1.4  0.3 792312 36864 ?        Ssl  02:57   0:01  \_ /usr/lib/gnome-terminal/gnome-terminal-server
+sathya    55938  0.0  0.0  22716  4784 pts/0    Ss   02:57   0:00      \_ bash
+root      55948  0.0  0.0  65616  4208 pts/0    S    02:57   0:00          \_ sudo su
+root      55949  0.0  0.0  65144  3872 pts/0    S    02:57   0:00              \_ su
+root      55962  0.0  0.0  43072  5744 pts/0    S    02:57   0:00                  \_ zsh
+root      56001  0.0  0.0  40196  4156 pts/0    R+   02:58   0:00                      \_ ps auxf
+sathya     3854  0.0  0.0 428736  7528 ?        Sl   Feb22   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+sathya    19996  0.0  0.0  11312  1544 ?        S    01:47   0:00  \_ /usr/bin/ssh-agent -D -a /run/user/1000/keyring/.ssh
+sathya     4292  0.0  0.1 1596756 17712 ?       Sl   Feb22   0:15 /usr/bin/pulseaudio --start --log-target=syslog
+sathya     4328  0.0  0.2 337004 20724 tty2     Sl   Feb22   0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+sathya     4499  0.0  0.1 501668 10720 tty2     Sl+  Feb22   0:00 /usr/lib/gnome-settings-daemon/gsd-printer
+sathya     4536  0.1  0.3 477824 32428 tty2     Sl+  Feb22   0:56 /usr/bin/vmtoolsd -n vmusr --blockFd 3
+root      14279  0.0  0.1 565024 13980 ?        Ssl  00:20   0:00 /usr/lib/fwupd/fwupd
+root      17724  0.3  1.0 1206616 104036 ?      Ssl  01:33   0:18 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+uuidd     19972  0.0  0.0  28148  1388 ?        Ss   01:47   0:00 /usr/sbin/uuidd --socket-activation
+sathya    50142 16.9  4.8 3406748 497684 tty2   Sl+  02:12   7:46 /usr/lib/firefox/firefox -new-window
+sathya    50196  0.5  1.5 2653420 157640 tty2   Sl+  02:12   0:15  \_ /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /
+sathya    50265  0.1  1.0 2591568 108624 tty2   Sl+  02:12   0:03  \_ /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6335 -prefMapSize 233258 -parentBuildID 20210204182252 -appdi
+sathya    50303  1.9  1.9 2852576 194500 tty2   Sl+  02:12   0:52  \_ /usr/lib/firefox/firefox -contentproc -childID 4 -isForBrowser -prefsLen 6247 -prefMapSize 233258 -parentBuildID 20210204182252 -appdi
+sathya    53957  4.8  1.8 2874148 187520 tty2   Sl+  02:33   1:12  \_ /usr/lib/firefox/firefox -contentproc -childID 20 -isForBrowser -prefsLen 10887 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+sathya    55185  3.7  2.5 2927804 261216 tty2   Sl+  02:38   0:45  \_ /usr/lib/firefox/firefox -contentproc -childID 28 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+sathya    55267  4.2  2.1 2879484 221332 tty2   Sl+  02:40   0:45  \_ /usr/lib/firefox/firefox -contentproc -childID 29 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+sathya    55299  0.0  0.4 365924 42832 tty2     Sl+  02:41   0:00  \_ /usr/lib/firefox/firefox -contentproc -parentBuildID 20210204182252 -prefsLen 10754 -prefMapSize 233258 -appdir /usr/lib/firefox/brows
+sathya    55315 15.5  3.1 3004628 316856 tty2   Sl+  02:41   2:35  \_ /usr/lib/firefox/firefox -contentproc -childID 30 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+sathya    55335  2.6  2.3 2887652 240052 tty2   Sl+  02:41   0:26  \_ /usr/lib/firefox/firefox -contentproc -childID 31 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+sathya    55351  1.3  1.7 2796916 182612 tty2   Sl+  02:41   0:13  \_ /usr/lib/firefox/firefox -contentproc -childID 32 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -app
+root      54698  0.0  0.0 100592  6932 ?        Ss   02:37   0:00 /usr/sbin/cupsd -l
+root      54700  0.0  0.0 303664  9076 ?        Ssl  02:37   0:00 /usr/sbin/cups-browsed
+root      55950  0.0  0.0  76972  8020 ?        Ss   02:57   0:00 /lib/systemd/systemd --user
+root      55951  0.0  0.0 194436  3308 ?        S    02:57   0:00  \_ (sd-pam)
+[root@ubuntu sathya ]$ ps | grep firefox
+sathya    50142 16.8  4.9 3406748 500124 tty2   Sl+  02:12   7:46 /usr/lib/firefox/firefox -new-window
+sathya    50196  0.5  1.5 2653420 157640 tty2   Sl+  02:12   0:15  \_ /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    50265  0.1  1.0 2591568 108624 tty2   Sl+  02:12   0:03  \_ /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6335 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    50303  1.8  1.9 2852576 194500 tty2   Sl+  02:12   0:52  \_ /usr/lib/firefox/firefox -contentproc -childID 4 -isForBrowser -prefsLen 6247 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    53957  4.8  1.8 2874148 187520 tty2   Sl+  02:33   1:12  \_ /usr/lib/firefox/firefox -contentproc -childID 20 -isForBrowser -prefsLen 10887 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    55185  3.7  2.5 2927804 261216 tty2   Sl+  02:38   0:45  \_ /usr/lib/firefox/firefox -contentproc -childID 28 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    55267  4.2  2.1 2879484 221328 tty2   Sl+  02:40   0:45  \_ /usr/lib/firefox/firefox -contentproc -childID 29 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    55299  0.0  0.4 365924 42832 tty2     Sl+  02:41   0:00  \_ /usr/lib/firefox/firefox -contentproc -parentBuildID 20210204182252 -prefsLen 10754 -prefMapSize 233258 -appdir /usr/lib/firefox/browser 50142 true rdd
+sathya    55315 15.4  3.1 3004628 323276 tty2   Sl+  02:41   2:36  \_ /usr/lib/firefox/firefox -contentproc -childID 30 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    55335  2.6  2.3 2887652 240052 tty2   Sl+  02:41   0:26  \_ /usr/lib/firefox/firefox -contentproc -childID 31 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+sathya    55351  1.3  1.7 2796916 182896 tty2   Sl+  02:41   0:13  \_ /usr/lib/firefox/firefox -contentproc -childID 32 -isForBrowser -prefsLen 10754 -prefMapSize 233258 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 50142 true tab
+[root@ubuntu sathya ]$ kill -9 3406748
+kill: kill 3406748 failed: no such process
+[root@ubuntu sathya ]$ kill 365924    
+kill: kill 365924 failed: no such process
+[root@ubuntu sathya ]$ kill -9 365924
+kill: kill 365924 failed: no such process
+[root@ubuntu sathya ]$ kill -9 55299 
+[root@ubuntu sathya ]$ kill -9 50142
+[root@ubuntu sathya ]$ ps | grep firefox
+root      56220  0.0  0.0  14436  1016 pts/0    S+   02:59   0:00                      \_ grep --color=auto firefox
+sathya    56051 70.8  3.0 3037136 310864 tty2   Sl+  02:59   0:08 /usr/lib/firefox/firefox -new-window
+sathya    56094 17.1  1.5 2630144 153964 tty2   Sl+  02:59   0:01  \_ /usr/lib/firefox/firefox -contentproc -childID 1 -isForBrowser -prefsLen 1 -prefMapSize 233170 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 56051 true tab
+sathya    56137  4.1  0.9 2572660 93220 tty2    Sl+  02:59   0:00  \_ /usr/lib/firefox/firefox -contentproc -childID 2 -isForBrowser -prefsLen 177 -prefMapSize 233170 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 56051 true tab
+sathya    56161  9.3  1.0 2591228 111812 tty2   Sl+  02:59   0:00  \_ /usr/lib/firefox/firefox -contentproc -childID 3 -isForBrowser -prefsLen 6249 -prefMapSize 233170 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 56051 true tab
+sathya    56193  5.4  0.8 2570352 81828 tty2    Sl+  02:59   0:00  \_ /usr/lib/firefox/firefox -contentproc -childID 4 -isForBrowser -prefsLen 6320 -prefMapSize 233170 -parentBuildID 20210204182252 -appdir /usr/lib/firefox/browser 56051 true tab
+[root@ubuntu sathya ]$ kill -9 56051
+[root@ubuntu sathya ]$ top
+
+top - 03:01:22 up  7:56,  1 user,  load average: 0.32, 0.32, 0.84
+Tasks: 398 total,   1 running, 284 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  8.8 us,  3.2 sy,  0.0 ni, 87.5 id,  0.2 wa,  0.0 hi,  0.3 si,  0.0 st
+KiB Mem : 10176464 total,  1271104 free,  4767608 used,  4137752 buff/cache
+KiB Swap:  2097148 total,  2096368 free,      780 used.  5052492 avail Mem 
+
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                                                                                
+  4269 sathya    20   0 3515188 244460  79732 S   8.6  2.4   7:31.35 gnome-shell                                                                                                                            
+ 56243 sathya    20   0 2987248 329572 144972 S   8.3  3.2   0:08.38 firefox                                                                                                                                
+  3860 sathya    20   0  569568 131136  65692 S   3.0  1.3   3:31.92 Xorg                                                                                                                                   
+ 56286 sathya    20   0 2630712 150844 113632 S   2.3  1.5   0:01.89 Privileged Cont                                                                                                                        
+ 17344 sathya    20   0 1451924  89176  36440 S   1.3  0.9   0:08.68 nautilus                                                                                                                               
+   793 systemd+  20   0   71028   6228   5268 S   1.0  0.1   0:08.25 systemd-resolve                                                                                                                        
+ 55928 sathya    20   0  793852  37884  27516 S   0.7  0.4   0:02.22 gnome-terminal-                                                                                                                        
+    11 root      20   0       0      0      0 I   0.3  0.0   0:28.94 rcu_sched                                                                                                                              
+   214 root     -51   0       0      0      0 S   0.3  0.0   0:09.92 irq/16-vmwgfx                                                                                                                          
+  1034 root      20   0  962056  42216  24732 S   0.3  0.4   2:12.59 containerd                                                                                                                             
+  1111 mysql     20   0 1424852 180248  14960 S   0.3  1.8   0:30.09 mysqld                                                                                                                                 
+  1198 zookeep+  20   0 5026104  59444  18248 S   0.3  0.6   0:48.71 java                                                                                                                                   
+  4317 sathya    20   0  429932   9980   6132 S   0.3  0.1   0:49.36 ibus-daemon                                                                                                                            
+  4328 sathya    20   0  337004  20724  16068 S   0.3  0.2   0:00.96 ibus-x11                                                                                                                               
+  4463 sathya    20   0  651640  22096  16652 S   0.3  0.2   0:06.39 gsd-color                                                                                                                              
+  4536 sathya    20   0  477824  32428  26188 S   0.3  0.3   0:56.18 vmtoolsd                                                                                                                               
+ 56241 root      20   0   44372   4180   3284 R   0.3  0.0   0:00.19 top                                                                                                                                    
+     1 root      20   0  160660   9848   6776 S   0.0  0.1   0:16.66 systemd                                                                                                                                
+     2 root      20   0       0      0      0 S   0.0  0.0   0:00.05 kthreadd                                                                                                                               
+     3 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_gp                                                                                                                                 
+     4 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_par_gp                                                                                                                             
+     6 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/0:0H-kb                                                                                                                        
+     9 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 mm_percpu_wq                                                                                                                           
+    10 root      20   0       0      0      0 S   0.0  0.0   0:04.83 ksoftirqd/0                                                                                                                            
+    12 root      rt   0       0      0      0 S   0.0  0.0   0:00.58 migration/0                                                                                                                            
+    13 root     -51   0       0      0      0 S   0.0  0.0   0:00.00 idle_inject/0                                                                                                                          
+    14 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/0                                                                                                                                
+    15 root      20   0       0      0      0 S   0.0  0.0   0:00.00 cpuhp/1                                                                                                                                
+    16 root     -51   0       0      0      0 S   0.0  0.0   0:00.00 idle_inject/1                                                                                                                          
+    17 root      rt   0       0      0      0 S   0.0  0.0   0:01.66 migration/1                                                                                                                            
+    18 root      20   0       0      0      0 S   0.0  0.0   0:05.35 ksoftirqd/1                                                                                                                            
+    20 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kworker/1:0H-kb                                                                                                                        
+    21 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kdevtmpfs                                                                                                                              
+    22 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 netns                                                                                                                                  
+    23 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_tasks_kthre                                                                                                                        
+    24 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kauditd                                                                                                                                
+    26 root      20   0       0      0      0 S   0.0  0.0   0:00.09 khungtaskd                                                                                                                             
+    27 root      20   0       0      0      0 S   0.0  0.0   0:00.00 oom_reaper                                                                                                                             
+    28 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 writeback                                                                                                                              
+    29 root      20   0       0      0      0 S   0.0  0.0   0:00.00 kcompactd0                                                                                                                             
+    30 root      25   5       0      0      0 S   0.0  0.0   0:00.00 ksmd                                                                                                                                   
+    31 root      39  19       0      0      0 S   0.0  0.0   0:00.10 khugepaged                                                                                                                             
+    77 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kintegrityd                                                                                                                            
+    78 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 kblockd                                                                                                                                
+    79 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 blkcg_punt_bio                                                                                                                         
+    82 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 tpm_dev_wq                                                                                                                             
+    83 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 ata_sff                                                                                                                                
+    84 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 md                                                                                                                                     
+[root@ubuntu sathya ]$ free
+              total        used        free      shared  buff/cache   available
+Mem:           9.7G        4.5G        1.2G         56M        3.9G        4.8G
+Swap:          2.0G        780K        2.0G
+[root@ubuntu sathya ]$ du -hs
+7.8G	.
+[root@ubuntu sathya ]$ pwd
+/home/sathya
+[root@ubuntu sathya ]$ s
+
+sathya@ubuntu:~$ 
+sathya@ubuntu:~$ cat /etc/sudoers
+cat: /etc/sudoers: Permission denied
+sathya@ubuntu:~$ sudo cat /etc/sudoers
+[sudo] password for sathya: 
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+user  ALL=(ALL) NOPASSWD:ALL
+sathya  ALL=(ALL) NOPASSWD:ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+sathya@ubuntu:~$ [root@ubuntu sathya ]$ adduser raj1   
+[root@ubuntu: command not found
+sathya@ubuntu:~$ Adding user `raj1' ...
+> Adding new group `raj1' (1005) ...
+> Adding new user `raj1' (1005) with group `raj1' ...
+bash: syntax error near unexpected token `('
+sathya@ubuntu:~$ Creating home directory `/home/raj1' ...
+> Copying files from `/etc/skel' ...
+> Enter new UNIX password: 
+> Retype new UNIX password: 
+> passwd: password updated successfully
+> Changing the user information for raj1
+> Enter the new value, or press ENTER for the default
+> Full Name []: raj1
+> Room Number []: raj1
+> Work Phone []: raj1
+> Home Phone []: raj1
+> Other []: raj1
+> Is the information correct? [Y/n] Y
+> [root@ubuntu sathya ]$ su - raj1
+> raj1@ubuntu:~$ pwd
+> /home/raj1
+> raj1@ubuntu:~$ ls -a
+> .  ..  .bash_logout  .bashrc  examples.desktop  .profile
+> raj1@ubuntu:~$ 
+> cat /etc/sudoers
+> ^C
+sathya@ubuntu:~$ sudo cat /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+user  ALL=(ALL) NOPASSWD:ALL
+sathya  ALL=(ALL) NOPASSWD:ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+sathya@ubuntu:~$ sudo vun /etc/sudoers
+sudo: vun: command not found
+sathya@ubuntu:~$ sudo vim /etc/sudoers
+sathya@ubuntu:~$ sudo cat /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults	env_reset
+Defaults	mail_badpass
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+user  ALL=(ALL) NOPASSWD:ALL
+sathya  ALL=(ALL) NOPASSWD:ALL
+raj1  ALL=(ALL) NOPASSWD:ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "#include" directives:
+
+#includedir /etc/sudoers.d
+sathya@ubuntu:~$ 
+
+[root@ubuntu sathya ]$ adduser raj1   
+Adding user `raj1' ...
+Adding new group `raj1' (1005) ...
+Adding new user `raj1' (1005) with group `raj1' ...
+Creating home directory `/home/raj1' ...
+Copying files from `/etc/skel' ...
+Enter new UNIX password: 
+Retype new UNIX password: 
+passwd: password updated successfully
+Changing the user information for raj1
+Enter the new value, or press ENTER for the default
+	Full Name []: raj1
+	Room Number []: raj1
+	Work Phone []: raj1
+	Home Phone []: raj1
+	Other []: raj1
+Is the information correct? [Y/n] Y
+[root@ubuntu sathya ]$ su - raj1
+raj1@ubuntu:~$ pwd
+/home/raj1
+raj1@ubuntu:~$ ls -a
+.  ..  .bash_logout  .bashrc  examples.desktop  .profile
+raj1@ubuntu:~$ sudo su
+[sudo] password for raj1: 
+raj1 is not in the sudoers file.  This incident will be reported.
+raj1@ubuntu:~$ cat /etc/sudoers
+cat: /etc/sudoers: Permission denied
+raj1@ubuntu:~$ sudo cat /etc/sudoers
+[sudo] password for raj1: 
+raj1 is not in the sudoers file.  This incident will be reported.
+raj1@ubuntu:~$ sudo su
+[sudo] password for raj1: 
+raj1 is not in the sudoers file.  This incident will be reported.
+raj1@ubuntu:~$ sudo su
+[root@ubuntu raj1 ]$ 
+
+
+shell scripting & cronjob:
+
+raj1@ubuntu:~$ crontab -l
+no crontab for raj1
+raj1@ubuntu:~$ crontab -e
+no crontab for raj1 - using an empty one
+
+Select an editor.  To change later, run 'select-editor'.
+  1. /bin/nano        <---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /bin/ed
+
+Choose 1-4 [1]: 1
+No modification made
+raj1@ubuntu:~$ crontab -l
+no crontab for raj1
+raj1@ubuntu:~$ crontab -e
+no crontab for raj1 - using an empty one
+crontab: installing new crontab
+raj1@ubuntu:~$ crontab -l
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+*/10 * * * * /home/sathya/shell-test/cron/check-disk-space.sh
+
+#will execute at 5 AM and 5 PM daily.
+0 5,17 * * * /home/sathya/shell-test/cron/check-disk-space.sh
+
+#every Sunday at 5 PM.
+0 17 * * sun /home/sathya/shell-test/cron/check-disk-space.sh
+
+# selected months
+* * * jan,may,aug * /home/sathya/shell-test/cron/check-disk-space.sh
+
+# selected days
+0 17 * * sun,fri /home/sathya/shell-test/cron/check-disk-space.sh
+
+#@yearly 
+@yearly /home/sathya/shell-test/cron/check-disk-space.sh
+raj1@ubuntu:~$ su - raj2
+Password: 
+raj2@ubuntu:~$ crontab -l
+no crontab for raj2
+raj2@ubuntu:~$ 
+
+
+RAID 0,1,2,3,4
+
+shell scripting:
+
+
+-> git, svn -> jenkins -> docker -> ansible
+									-> 15 softwares well tested in ubuntu.
+-> multi node setup using vagrant -> ssh, host file addition
+sathya@ubuntu:~$ ls /srv/services/
+apache-rp                  checkpoint-ingest  docker-registry        es2graphite          grafana       hdfs-datanode         jmxtrans       kafka-http-proxy  kibana-config
+capacityplanning-frontend  chronos            elasticsearch2-config  filebeat-dev-config  graphite-web  hdfs-namenode         kafka          kafka-ingester
+carbon                     data               elasticsearch-config   flume                hadoop        hdfs-namenode-format  kafka-config   kafka-snmptrap
+cassandra                  docker-proxy       elasticsearch-curator  gatling              haproxy       jenkins               kafka-connect  kibana
+sathya@ubuntu:~$ ll /srv/services/
+total 140
+drwxr-xr-x 35 root root 4096 Feb 22 18:55 ./
+drwxr-xr-x  3 root root 4096 Feb 22 18:39 ../
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 apache-rp/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 capacityplanning-frontend/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 carbon/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 cassandra/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 checkpoint-ingest/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 chronos/
+drwxr-xr-x  3 root root 4096 Feb 22 18:55 data/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 docker-proxy/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 docker-registry/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 elasticsearch2-config/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 elasticsearch-config/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 elasticsearch-curator/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 es2graphite/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 filebeat-dev-config/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 flume/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 gatling/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 grafana/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 graphite-web/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 hadoop/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 haproxy/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 hdfs-datanode/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 hdfs-namenode/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 hdfs-namenode-format/
+drwxrwxrwx  2 root root 4096 Feb 22 19:02 jenkins/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 jmxtrans/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka-config/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka-connect/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka-http-proxy/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka-ingester/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kafka-snmptrap/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kibana/
+drwxrwxr-x  2 root root 4096 Feb 22 18:39 kibana-config/
+sathya@ubuntu:~$ 
